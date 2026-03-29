@@ -83,6 +83,8 @@ for len(queue) > 0 {
 	}
 }
 }
+
+
 func LevelPrintPyramid(root *TreeNode) {
 if root == nil {
 return

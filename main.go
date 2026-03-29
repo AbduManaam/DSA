@@ -4,6 +4,7 @@ import (
 	"dsa/binary-tree"
 	myheap "dsa/heap"
 	"container/heap"
+	"dsa/sorting"
 	"fmt"
 )
 
@@ -84,5 +85,8 @@ func main() {
     fmt.Println(heap.Pop(&copyHeap)," ")
 }
 
+   //Insertion Sort
 
+   arr := []int{1, 2, 4, 5, 8, 7, 3}
+	fmt.Println("Insertion sorted:",sorting.Insertion(arr))
 }
