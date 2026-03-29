@@ -8,6 +8,7 @@ type TreeNode struct{
 	right *TreeNode
 }
 
+
 func BuildTree(preOrder,inOrder []int)*TreeNode{
 
 	if len(preOrder)==0{
@@ -105,7 +106,7 @@ for i:=0;i<size;i++ {
 	
 }
 fmt.Println()
-}
+ }
 }
 
 func Search(root *TreeNode,k int)bool{
@@ -118,4 +119,142 @@ func Search(root *TreeNode,k int)bool{
 	}
 	return Search(root.left,k)||Search(root.right,k)
 
+}
+
+
+
+func Insert(root *TreeNode,v int)*TreeNode{
+  
+	newNode:=&TreeNode{val: v}
+	
+	if root==nil{
+		return newNode
+	}
+	queue:=[]*TreeNode{root}
+
+	for len(queue)>0{
+	   curr:=queue[0]
+	   queue=queue[1:]
+
+	   if curr.left==nil{
+		curr.left=newNode
+		return root
+	   }else{
+		queue=append(queue,curr.left)
+	   }
+
+	   if curr.right==nil{
+		curr.right=newNode
+		return root
+	   }else{
+		queue=append(queue,curr.right)
+	   }
+
+	}
+	return root
+}
+
+//BFS Search
+func Searchh(root *TreeNode,v int)bool{
+
+   
+   if root==nil{
+	return false
+   }
+
+   queue:=[]*TreeNode{root}
+
+   for len(queue)>0{
+	curr:=queue[0]
+	queue=queue[1:]
+
+	if curr.val==v{
+		return true
+	}
+    if curr.left!=nil{
+		queue=append(queue,curr.left)
+	}
+    if curr.right!=nil{
+		queue=append(queue,curr.right)
+	}
+
+   }
+   return false
+
+}
+func Update(root *TreeNode,oldVal,newVal int)bool{
+
+   
+   if root==nil{
+	return false
+   }
+
+   queue:=[]*TreeNode{root}
+
+   for len(queue)>0{
+	curr:=queue[0]
+	queue=queue[1:]
+
+	if curr.val==oldVal{
+		curr.val=newVal
+		return true
+	}
+    if curr.left!=nil{
+		queue=append(queue,curr.left)
+	}
+    if curr.right!=nil{
+		queue=append(queue,curr.right)
+	}
+
+   }
+   return false
+
+}
+
+func Delete(root *TreeNode,value int)*TreeNode{
+ 
+    if root==nil{
+		return nil
+	}
+
+	var target,last *TreeNode
+	var parentOfLast *TreeNode
+
+    queue:=[]*TreeNode{root}
+	m:=make(map[*TreeNode]*TreeNode)
+
+	for len(queue)>0{
+		curr:=queue[0]
+		queue=queue[1:]
+       
+		if curr.val==value{
+			target=curr
+		}
+		if curr.left!=nil{
+			m[curr.left]=curr
+			queue = append(queue, curr.left)
+		}
+		if curr.right!=nil{
+			m[curr.right]=curr
+			queue = append(queue, curr.right)
+		}
+		last=curr
+	}
+	if target==nil{
+		return root
+	}
+
+	target.val=last.val
+	parentOfLast=m[last]
+
+	if parentOfLast !=nil{
+		if parentOfLast.left==last{
+			parentOfLast.left=nil
+		}else if parentOfLast.right == last{
+			parentOfLast.right=nil
+		}
+	}else{
+		root=nil
+	}
+return root
 }

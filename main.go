@@ -9,6 +9,8 @@ import (
 
 
 func main() {
+
+	//Binary tree
 	preOrder := []int{1, 2, 4, 5, 3}
 	inOrder := []int{4, 2, 5, 1, 3}
     
@@ -19,6 +21,24 @@ func main() {
 	binarytree.PreOrder(root)
 	fmt.Println()
 	binarytree.LevelPrint(root)
+	fmt.Println()
+
+
+	f:=binarytree.Insert(root,100)
+	fmt.Print("After Insert: ")
+	binarytree.LevelPrint(f)
+	fmt.Println()
+
+	fmt.Println("Search=",binarytree.Searchh(root,150))
+	fmt.Println("Search=",binarytree.Searchh(root,100))
+
+	fmt.Println()
+
+	fmt.Println("Updated: ",binarytree.Update(root,4, 40 ))
+
+	r:=binarytree.Delete(root,3 )
+	fmt.Print("After Delete: ")
+	binarytree.LevelPrint(r)
 	fmt.Println()
 
 	fmt.Println("Pyramid:")
