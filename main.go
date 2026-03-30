@@ -86,7 +86,33 @@ func main() {
 }
 
    //Insertion Sort
-
-   arr := []int{1, 2, 4, 5, 8, 7, 3}
+    arr := []int{1, 2, 4, 5, 8, 7, 3}
 	fmt.Println("Insertion sorted:",sorting.Insertion(arr))
+
+   //Selection Sort
+
+   arr1 := []int{1, 2, 4, 5, 8, 7, 3}
+	fmt.Println("Selection sorted:",sorting.Insertion(arr1))
+
+//---------------------------------------------
+
+    fmt.Println()
+
+	p := &myheap.Pq{
+		{Val: "T1", Priority: 1},
+		{Val: "T2", Priority: 5},
+		{Val: "T3", Priority: 7},
+		{Val: "T4", Priority: 2},
+		{Val: "T5", Priority: 3},
+	}
+	heap.Init(p)
+	heap.Push(p,&myheap.MaxHeap{Val: "T12",Priority: 10})
+	heap.Push(p,&myheap.MaxHeap{Val:"T34",Priority: 11})
+
+	fmt.Println("Priority Queue (max heap order):")
+	fmt.Println()
+    for p.Len()>0{
+		item:=heap.Pop(p).(*myheap.MaxHeap)
+		fmt.Printf("Value:%s,Priority:%d\n",item.Val,item.Priority)
+	}
 }
