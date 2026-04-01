@@ -2,6 +2,7 @@ package main
 
 import (
 	"dsa/binary-tree"
+	BST "dsa/binary-searchT"
 	myheap "dsa/heap"
 	"container/heap"
 	"dsa/sorting"
@@ -48,6 +49,18 @@ func main() {
 	fmt.Println()
 	
 	fmt.Println("Search=",binarytree.Search(root,15))
+
+	//Binary-Search Tree
+
+	fmt.Println("Binary Search Tree:")
+	var BSTroot *BST.Node
+
+	arr2 := []int{1, 14, 5, 82, 1, 6, 5}
+	for _, v := range arr2 {
+		BSTroot = BST.Insert(BSTroot, v)
+	}
+	BST.Inorder(BSTroot)
+
 
     //HEAP
 	m := &myheap.MinHeap{}
@@ -115,4 +128,9 @@ func main() {
 		item:=heap.Pop(p).(*myheap.MaxHeap)
 		fmt.Printf("Value:%s,Priority:%d\n",item.Val,item.Priority)
 	}
+	
+	fmt.Println("Height of tree:", binarytree.Height(root))
+	fmt.Println("Total nodes:", binarytree.CountNode(root))
+	fmt.Println("Leaf nodes:", binarytree.CountLeaf(root))
+	fmt.Println("Internal nodes:", binarytree.CountInterval(root))
 }

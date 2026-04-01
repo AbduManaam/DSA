@@ -260,3 +260,45 @@ func Delete(root *TreeNode,value int)*TreeNode{
 	}
 return root
 }
+
+func Height(root *TreeNode)int{
+
+	if root==nil{
+		return 0
+	}
+	left:=Height(root.left)
+	right:=Height(root.right)
+	
+	if left<right{
+		return right+1
+	}
+	return left+1
+}
+
+func CountLeaf(root *TreeNode)int{
+	if root==nil{
+		return 0
+	}
+	if root.left==nil && root.right==nil{
+		return 1
+	}
+	return CountLeaf(root.left)+CountLeaf(root.right)
+}
+
+func CountNode(root *TreeNode)int{
+	if root==nil{
+		return 0
+	}
+	
+	return 1+ CountNode(root.left)+CountNode(root.right)
+}
+
+func CountInterval(root *TreeNode)int{
+
+	if root==nil || (root.left==nil || root.right==nil ){
+		return 0
+	}
+	return 1+CountInterval(root.left)+CountInterval(root.right)
+
+}
+
