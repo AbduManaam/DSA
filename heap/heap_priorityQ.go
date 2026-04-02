@@ -57,3 +57,14 @@ func (p *Pq) Pop() interface{} {
 // 		fmt.Printf("Value:%s,Priority:%d\n",item.Val,item.priority)
 // 	}
 // }
+
+
+// You need:
+
+// heap.Pop(p).(*MaxHeap)
+
+// because:
+
+// 👉 heap.Pop() returns interface{}
+// 👉 You must convert it back to your actual type (*MaxHeap)
+

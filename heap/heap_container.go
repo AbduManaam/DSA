@@ -27,3 +27,22 @@ func(h *InHeap)Pop()interface{}{
 	*h=(*h)[0:size-1]
 	return val
 }
+
+
+// func main() {
+// 	h := &heap.InHeap{5, 3, 8, 1, 2}
+
+// 	heap.Init(h)
+
+// 	// Push new elements
+// 	heap.Push(h, 4)
+// 	heap.Push(h, 0)
+
+// 	// Pop elements (in ascending order since it's a min-heap)
+
+// 	for h.Len() > 0 {
+// 		fmt.Println(heap.Pop(h))
+// 	}
+// }
+
+

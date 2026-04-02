@@ -70,3 +70,29 @@ func (n *MinHeap) Display() {
 }
 
 
+
+func main() {
+	h := &MinHeap{}
+
+	// Insert elements
+	s := []int{4, 5, 1, 2, 8, 9, 6, 3, 7}
+
+	for _, ch := range s {
+		h.Insert(ch)
+	}
+
+	// Display heap
+	fmt.Print("Heap: ")
+	h.Display()
+	fmt.Println()
+
+	// Extract elements (min first)
+	fmt.Println("Extracted:", h.Extract())
+	fmt.Println("Extracted:", h.Extract())
+
+	// Display after extraction
+	fmt.Print("Heap after extraction: ")
+	h.Display()
+	fmt.Println()
+}
+
