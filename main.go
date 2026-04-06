@@ -6,6 +6,7 @@ import (
 	myheap "dsa/heap"
 	"container/heap"
 	"dsa/sorting"
+	"dsa/hash-map"
 	"fmt"
 )
 
@@ -133,4 +134,22 @@ func main() {
 	fmt.Println("Total nodes:", binarytree.CountNode(root))
 	fmt.Println("Leaf nodes:", binarytree.CountLeaf(root))
 	fmt.Println("Internal nodes:", binarytree.CountInterval(root))
+
+	//Hash Map
+
+	hm := hashmap.BuildHashMap(5)
+
+	hm.Put("apple", 10)
+	hm.Put("banana", 20)
+	hm.Put("grape", 30)
+	hm.Put("apple", 50) // update
+    fmt.Println("Hash Elements: ")
+	hm.Display()
+
+	val, found := hm.Get("apple")
+	fmt.Println("apple:", val, found)
+
+	hm.Remove("banana")
+	hm.Display()
+
 }

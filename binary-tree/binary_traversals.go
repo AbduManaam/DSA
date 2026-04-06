@@ -1,6 +1,9 @@
 package binarytree
 
-import "fmt"
+import (
+	"fmt"
+
+)
 
 type TreeNode struct{
 	val int
@@ -301,4 +304,26 @@ func CountInterval(root *TreeNode)int{
 	return 1+CountInterval(root.left)+CountInterval(root.right)
 
 }
+
+//Diameter
+
+var maxDiameter int
+
+func Diameter(root *TreeNode)int{
+	if root==nil{
+       return 0
+	}
+
+	left:=Diameter(root.left)
+	right:=Diameter(root.right)
+
+	if left+right>maxDiameter{
+		maxDiameter=left+right
+	}
+	if left>right{
+		return left+1
+	}
+	return right+1
+}
+
 

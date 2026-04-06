@@ -81,20 +81,3 @@ func (h *HashMap) Display() {
 
 }
 
-// Main function
-func main() {
-	hm := BuildHashMap(5)
-
-	hm.Put("apple", 10)
-	hm.Put("banana", 20)
-	hm.Put("grape", 30)
-	hm.Put("apple", 50) // update
-
-	hm.Print()
-
-	val, found := hm.Get("apple")
-	fmt.Println("apple:", val, found)
-
-	hm.Remove("banana")
-	hm.Print()
-}
