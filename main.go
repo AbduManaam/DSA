@@ -157,5 +157,10 @@ func main() {
 	// Graph
 	fmt.Println("Graph ")
 	graph.UndirectedG()
+	graph.DirectedG()
+	graph.WeightedG()
+	graph.MUndirectedG()
+	graph.MdirectedG()
+	graph.MWeightedG()
 
 }
