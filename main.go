@@ -7,7 +7,9 @@ import (
 	"container/heap"
 	"dsa/sorting"
 	"dsa/hash-map"
+    "dsa/graph"
 	"fmt"
+	
 )
 
 
@@ -151,5 +153,9 @@ func main() {
 
 	hm.Remove("banana")
 	hm.Display()
+
+	// Graph
+	fmt.Println("Graph ")
+	graph.UndirectedG()
 
 }
