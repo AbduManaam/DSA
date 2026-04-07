@@ -109,6 +109,7 @@ func Bfs(g [][]int,s int){
 
 }
 
+
 //------------------------------------------------------------------------------------
 
 func Dfs(graph [][]int,node int,visited map[int]bool){
@@ -126,7 +127,28 @@ func Dfs(graph [][]int,node int,visited map[int]bool){
    fmt.Println("Length of graph = ",len(graph))
 
 }
+
+// func main() {
+// 	// Adjacency list graph
+// 	graph := [][]int{
+// 		{1, 2}, // 0
+// 		{0, 3}, // 1
+// 		{0},    // 2
+// 		{1},    // 3
+// 	}
+
+// 	visited := make(map[int]bool)
+
+// 	startNode := 0
+
+// 	Dfs(graph, startNode, visited)
+// }
+
+
+
 //------------------------------------------------------------------------------------
+
+// DFS Cycle Detect
 
 func hashCycleDFS(graph [][]int) bool {
 	visited := make([]bool, len(graph))
@@ -172,6 +194,7 @@ func hashCycleDFS(graph [][]int) bool {
 //------------------------------------------------------------------------------------
 
 
+// BFS Cycle Detect
 
 type Pair struct {
 	node   int
