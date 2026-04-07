@@ -4,6 +4,8 @@ import (
 	"fmt"
 )
 
+//------------------------------------------------------------------------------------
+
 func MUndirectedG() {
 
 	graph:=make(map[int][]int)
@@ -22,6 +24,55 @@ func MUndirectedG() {
 	fmt.Println("UnDirected Graph (make):= ",graph)
 }
 
+//------------------------------------------------------------------------------------
+
+// Cycle Detection
+
+func hasCycle(graph map[int][]int) bool {
+	visited := make(map[int]bool)
+
+	var dfs func(node, parent int) bool
+	dfs = func(node, parent int) bool {
+		visited[node] = true
+
+		for _, nei := range graph[node] {
+			if !visited[nei] {
+				if dfs(nei, node) {
+					return true
+				}
+			} else if nei != parent {
+				return true 
+			}
+		}
+		return false
+	}
+
+	for node := range graph {
+		if !visited[node] {
+			if dfs(node, -1) {
+				return true
+			}
+		}
+	}
+
+	return false
+}
+
+//------------------------------------------------------------------------------------
+
+func main() {
+	graph := map[int][]int{
+		0: {1},
+		1: {0, 2},
+		2: {1, 3},
+		3: {2, 0}, // cycle here
+	}
+
+	fmt.Println(hasCycle(graph)) // true
+}
+
+//------------------------------------------------------------------------------------
+
 func MdirectedG() {
 
 	graph:=make(map[int][]int)
@@ -37,7 +88,7 @@ func MdirectedG() {
 	fmt.Println("Directed Graph (make):= ",graph)
 }
 
-
+//------------------------------------------------------------------------------------
 
 type Edges struct{
 	To int

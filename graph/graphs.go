@@ -24,6 +24,8 @@ func UndirectedG() {
 	fmt.Println("UnDirected Graph:= ",graph)
 }
 
+//------------------------------------------------------------------------------------
+
 func RemoveG(graph [][]int,u,v int){
 
    neighbour:=graph[u]
@@ -59,6 +61,8 @@ func AllNeighbors(g [][]int,u,v int){
 	fmt.Print(neighbors)
 }
 
+//------------------------------------------------------------------------------------
+
 //Directed Graph
 
 func DirectedG(){
@@ -78,6 +82,8 @@ func DirectedG(){
    fmt.Println("Directed Graph:= ",graph)
 
 }
+
+//------------------------------------------------------------------------------------
 
 func Bfs(g [][]int,s int){
 
@@ -103,6 +109,124 @@ func Bfs(g [][]int,s int){
 
 }
 
+//------------------------------------------------------------------------------------
+
+func Dfs(graph [][]int,node int,visited map[int]bool){
+
+   if visited[node]{
+	return
+   }
+	visited[node]=true
+
+	fmt.Print(node," ")
+   for _,nei:=range graph[node]{
+	Dfs(graph,nei,visited)
+   }
+
+   fmt.Println("Length of graph = ",len(graph))
+
+}
+//------------------------------------------------------------------------------------
+
+func hashCycleDFS(graph [][]int) bool {
+	visited := make([]bool, len(graph))
+
+	var dfs func(node, parent int) bool
+	dfs = func(node, parent int) bool {
+		visited[node] = true
+
+		for _, nei := range graph[node] {
+			if !visited[nei] {
+				if dfs(nei, node) {
+					return true
+				}
+			} else if nei != parent {
+				return true
+			}
+		}
+		return false
+	}
+
+	for i := 0; i < len(graph); i++ {
+		if !visited[i] {
+			if dfs(i, -1) {
+				return true
+			}
+		}
+	}
+
+	return false
+}
+
+// func main() {
+// 	graph := [][]int{
+// 		{1},       // 0
+// 		{0, 2},    // 1
+// 		{1, 3},    // 2
+// 		{2, 0},    // 3 → cycle
+// 	}
+
+// 	fmt.Println(hashCycleDFS(graph)) // true
+// }
+
+//------------------------------------------------------------------------------------
+
+
+
+type Pair struct {
+	node   int
+	parent int
+}
+
+func hasCycleBFS(graph [][]int) bool {
+	n := len(graph)
+	visited := make([]bool, n)
+
+	for i := 0; i < n; i++ {          //Handle disconnected graph
+		if !visited[i] {
+
+			// start BFS from this node
+			
+			queue := []Pair{{i, -1}}  // Here: queue already exists,you are adding a new element (not appending concept)
+			visited[i] = true
+
+			for len(queue) > 0 {
+				curr := queue[0]
+				queue = queue[1:]
+
+				node := curr.node
+				parent := curr.parent
+
+				for _, nei := range graph[node] {
+
+					if !visited[nei] {
+						visited[nei] = true   // go forward
+						queue = append(queue, Pair{nei, node})
+
+					} else if nei != parent {						
+						return true  // visited and not parent → cycle
+					}
+				}
+			}
+		}
+	}
+	return false
+}
+
+// func main() {
+// 	graph := [][]int{
+// 		{1},        // 0
+// 		{0, 2},     // 1
+// 		{1, 3},     // 2
+// 		{2, 1},     // 3 → cycle here
+// 	}
+
+// 	fmt.Println(hasCycleBFS(graph)) // true
+// }
+
+
+//------------------------------------------------------------------------------------
+
 // Weighted Graph
 type Edge struct{
 	To int
@@ -125,4 +249,20 @@ func WeightedG(){
 
 	fmt.Println("Weighted Graph:= ",graph)
 }
+
+//------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
