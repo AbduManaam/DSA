@@ -8,6 +8,7 @@ import (
 	"dsa/sorting"
 	"dsa/hash-map"
     "dsa/graph"
+    "dsa/quicksort"
 	"fmt"
 	
 )
@@ -162,5 +163,27 @@ func main() {
 	graph.MUndirectedG()
 	graph.MdirectedG()
 	graph.MWeightedG()
+
+	// Graph Matrix
+
+	ms:=5
+	edges:=[][]int{
+		{0, 1},
+		{0, 2},
+		{1, 3},
+		{2, 3},
+
+	}
+
+	fmt.Println("Undirected Matrix =",graph.BuildUndirectedMatrix(ms,edges))
+	fmt.Println("Directed Matrix =",graph.BuildDirectedMatrix(ms,edges))
+	fmt.Println("Weighted Matrix =",graph.BuildWeightedMatrix(ms,edges))
+    graph.PrintMatrix(edges)
+
+	// Quick Sort
+
+	arr3:= []int{10, 7, 8, 9, 1, 5}
+	quicksort.QuickSort(arr1, 0, len(arr)-1)
+	fmt.Println("QuickSort Array: ",arr3)
 
 }
