@@ -4,15 +4,15 @@ func heapSort(arr []int) {
 	n := len(arr)
 
 	// Build heap
-	for i := n/2 - 1; i >= 0; i-- {
-		heapify(arr, n, i)
+	for i := n/2 - 1; i >= 0; i-- {   //(i := n/2 - 1)=last node that has children to work heap func (swap)
+		heapify(arr, n, i)            //  // Convert array into max heap
 	}
 
 	// Extract elements
 	for i := n - 1; i > 0; i-- {
 		arr[0], arr[i] = arr[i], arr[0]
-		heapify(arr, i, 0)
-	}
+		heapify(arr, i, 0)            //  // Fix heap after removing max element
+	}  
 }
 
 func heapify(arr []int, n, i int) {
@@ -29,6 +29,7 @@ func heapify(arr []int, n, i int) {
 
 	if largest != i {
 		arr[i], arr[largest] = arr[largest], arr[i]
-		heapify(arr, n, largest)
+		heapify(arr, n, largest)              //   Continue fixing heap downward
 	}
 }
+
