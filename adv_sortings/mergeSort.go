@@ -1,4 +1,4 @@
-package quicksort
+package advsortings
 
 func mergeSort(arr []int) []int {
 	if len(arr) <= 1 {
@@ -31,3 +31,12 @@ func merge(left, right []int) []int {
 
 	return result
 }
+
+
+
+
+
+
+
+
+

@@ -8,7 +8,7 @@ import (
 	"dsa/sorting"
 	"dsa/hash-map"
     "dsa/graph"
-    "dsa/quicksort"
+    "dsa/adv_sortings"
 	"fmt"
 	
 )
@@ -183,7 +183,7 @@ func main() {
 	// Quick Sort
 
 	arr3:= []int{10, 7, 8, 9, 1, 5}
-	quicksort.QuickSort(arr1, 0, len(arr)-1)
+	advsortings.QuickSort(arr1, 0, len(arr)-1)
 	fmt.Println("QuickSort Array: ",arr3)
 
 }

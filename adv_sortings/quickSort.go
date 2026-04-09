@@ -1,4 +1,4 @@
-package quicksort
+package advsortings
 
 
 
@@ -12,7 +12,7 @@ func QuickSort(arr []int, low, high int) {
 }
 
 func partition(arr []int, low, high int) int {
-	pivot := arr[high] // choose last element as pivot
+	pivot := arr[high] 
 	i := low - 1
 
 	for j := low; j < high; j++ {
@@ -27,13 +27,6 @@ func partition(arr []int, low, high int) int {
 
 	return i + 1
 }
-
-
-
-
-
-
-
 
 
 
