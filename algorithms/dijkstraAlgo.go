@@ -1,6 +1,5 @@
 package algorithms
 
-
 import (
 	"container/heap"
 )
@@ -41,7 +40,7 @@ func (pq *PriorityQueue) Pop() interface{} {
 	return node
 }
 
-// 🔥 DIJKSTRA FUNCTION
+// DIJKSTRA FUNCTION
 func dijkstra(graph [][]Edge, src int) []int {
 	n := len(graph)
 
@@ -97,3 +96,22 @@ func dijkstra(graph [][]Edge, src int) []int {
 // 	result := dijkstra(graph, 0)
 // 	fmt.Println(result)
 // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
