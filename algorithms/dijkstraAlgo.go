@@ -2,6 +2,7 @@ package algorithms
 
 import (
 	"container/heap"
+
 )
 
 type Edge struct {
@@ -11,8 +12,8 @@ type Edge struct {
 
 // Min Heap Node
 type Node struct {
-	vertex int
-	dist   int
+	vertex   int
+	distance int
 }
 
 // Priority Queue (Min Heap)
@@ -21,7 +22,7 @@ type PriorityQueue []Node
 func (pq PriorityQueue) Len() int { return len(pq) }
 
 func (pq PriorityQueue) Less(i, j int) bool {
-	return pq[i].dist < pq[j].dist
+	return pq[i].distance < pq[j].distance
 }
 
 func (pq PriorityQueue) Swap(i, j int) {
@@ -44,8 +45,8 @@ func (pq *PriorityQueue) Pop() interface{} {
 func dijkstra(graph [][]Edge, src int) []int {
 	n := len(graph)
 
-	// Distance array
 	dist := make([]int, n)
+
 	for i := range dist {
 		dist[i] = 1e9 // infinity
 	}
@@ -54,13 +55,13 @@ func dijkstra(graph [][]Edge, src int) []int {
 	// Min heap
 	pq := &PriorityQueue{}
 	heap.Init(pq)
-	heap.Push(pq, Node{vertex: src, dist: 0})
+	heap.Push(pq, Node{vertex: src, distance: 0})
 
 	for pq.Len() > 0 {
 		curr := heap.Pop(pq).(Node)
 
 		u := curr.vertex
-		d := curr.dist
+		d := curr.distance
 
 		// Skip outdated entries
 		if d > dist[u] {
@@ -74,16 +75,13 @@ func dijkstra(graph [][]Edge, src int) []int {
 
 			if dist[u]+weight < dist[v] {
 				dist[v] = dist[u] + weight
-				heap.Push(pq, Node{vertex: v, dist: dist[v]})
+				heap.Push(pq, Node{vertex: v, distance: dist[v]})
 			}
 		}
 	}
 
 	return dist
 }
-
-
-
 
 // func main() {
 // 	graph := [][]Edge{
@@ -96,22 +94,3 @@ func dijkstra(graph [][]Edge, src int) []int {
 // 	result := dijkstra(graph, 0)
 // 	fmt.Println(result)
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

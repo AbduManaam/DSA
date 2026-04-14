@@ -60,16 +60,16 @@ func hasCycle(graph map[int][]int) bool {
 
 //------------------------------------------------------------------------------------
 
-func main() {
-	graph := map[int][]int{
-		0: {1},
-		1: {0, 2},
-		2: {1, 3},
-		3: {2, 0}, // cycle here
-	}
+// func main() {
+// 	graph := map[int][]int{
+// 		0: {1},
+// 		1: {0, 2},
+// 		2: {1, 3},
+// 		3: {2, 0}, // cycle here
+// 	}
 
-	fmt.Println(hasCycle(graph)) // true
-}
+// 	fmt.Println(hasCycle(graph)) // true
+// }
 
 //------------------------------------------------------------------------------------
 

@@ -6,6 +6,21 @@ import (
 
 //UnDirected Graph
 
+func paraUndirectedG(edge [][]int,s int)[][]int{
+
+   graph:=make([][]int,s)
+
+   for _,val:=range edge{
+	
+	u,v := val[0],val[1]
+	graph[u]=append(graph[u],v)
+	graph[v]=append(graph[v],u)
+
+   }
+   return graph
+
+}
+
 func UndirectedG() {
 	n := 5
 	graph := make([][]int, n)
@@ -23,6 +38,7 @@ func UndirectedG() {
 
 	fmt.Println("UnDirected Graph:= ",graph)
 }
+
 
 //------------------------------------------------------------------------------------
 
@@ -42,10 +58,17 @@ func RemoveG(graph [][]int,u,v int){
 			break
 	 }
    }
+   
 
 }
 
+
+
 func IsEdgeExist(g [][]int,u,v int)bool{
+
+	if u < 0 || u >= len(g) {
+		return false
+	}
 
 	for _,val:=range g[u]{
 		if val==v{
@@ -60,6 +83,8 @@ func AllNeighbors(g [][]int,u,v int){
 	neighbors:=g[u]
 	fmt.Print(neighbors)
 }
+
+
 
 //------------------------------------------------------------------------------------
 
@@ -194,6 +219,7 @@ func hashCycleDFS(graph [][]int) bool {
 //------------------------------------------------------------------------------------
 
 
+
 // BFS Cycle Detect
 
 type Pair struct {
@@ -272,5 +298,6 @@ func WeightedG(){
 
 	fmt.Println("Weighted Graph:= ",graph)
 }
+
 
 //------------------------------------------------------------------------------------

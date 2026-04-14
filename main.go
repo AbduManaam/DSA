@@ -136,7 +136,7 @@ func main() {
 	fmt.Println("Height of tree:", binarytree.Height(root))
 	fmt.Println("Total nodes:", binarytree.CountNode(root))
 	fmt.Println("Leaf nodes:", binarytree.CountLeaf(root))
-	fmt.Println("Internal nodes:", binarytree.CountInterval(root))
+	fmt.Println("Internal nodes:", binarytree.CountInterVal(root))
 
 	//Hash Map
 
@@ -187,3 +187,6 @@ func main() {
 	fmt.Println("QuickSort Array: ",arr3)
 
 }
+
+
+

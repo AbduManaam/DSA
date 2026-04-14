@@ -6,11 +6,33 @@ import (
 )
 
 type TreeNode struct{
-	val int
-	left *TreeNode
-	right *TreeNode
+	Val int
+	Left *TreeNode
+	Right *TreeNode
 }
 
+
+func buildBST(preorder []int) *TreeNode {
+    i := 0
+    var helper func(bound int) *TreeNode
+
+    helper = func(bound int) *TreeNode {
+        if i == len(preorder) || preorder[i] > bound {
+            return nil
+        }
+
+        rootVal := preorder[i]
+        i++
+
+        root := &TreeNode{Val: rootVal}
+        root.Left = helper(rootVal)
+        root.Right = helper(bound)
+
+        return root
+    }
+
+    return helper(int(^uint(0) >> 1)) // max int
+}
 
 func BuildTree(preOrder,inOrder []int)*TreeNode{
 
@@ -32,13 +54,13 @@ func BuildTree(preOrder,inOrder []int)*TreeNode{
 	  }
 
       rootV:= preOrder[prestart]
-	  root:= &TreeNode{val:rootV}
+	  root:= &TreeNode{Val:rootV}
 
 	  inInx:= m[rootV] 
-	  leftsize:= inInx-instart
+	  Leftsize:= inInx-instart
 
-	  root.left= helper(prestart+1,instart,inInx-1)
-	  root.right= helper(prestart+leftsize+1,inInx+1,inend)
+	  root.Left= helper(prestart+1,instart,inInx-1)
+	  root.Right= helper(prestart+Leftsize+1,inInx+1,inend)
 	  return root
 	}
 
@@ -51,9 +73,9 @@ func InOrder(root *TreeNode){
 	if root==nil{
 		return
 	}
-	InOrder(root.left)
-	fmt.Print(root.val," ")
-	InOrder(root.right)
+	InOrder(root.Left)
+	fmt.Print(root.Val," ")
+	InOrder(root.Right)
 	
 }
 
@@ -62,9 +84,9 @@ func PreOrder(root *TreeNode){
 	if root==nil{
 		return
 	}
-	fmt.Print(root.val," ")
-	PreOrder(root.left)
-	PreOrder(root.right)
+	fmt.Print(root.Val," ")
+	PreOrder(root.Left)
+	PreOrder(root.Right)
 	
 }
 func LevelPrint(root *TreeNode) {
@@ -76,13 +98,13 @@ queue := []*TreeNode{root}
 for len(queue) > 0 {
 	current := queue[0]
 	queue = queue[1:] 
-	fmt.Print(current.val, " ")
+	fmt.Print(current.Val, " ")
 
-	if current.left != nil {
-		queue = append(queue, current.left)
+	if current.Left != nil {
+		queue = append(queue, current.Left)
 	}
-	if current.right != nil {
-		queue = append(queue, current.right)
+	if current.Right != nil {
+		queue = append(queue, current.Right)
 	}
 }
 }
@@ -100,13 +122,13 @@ for len(queue)>0{
 for i:=0;i<size;i++ {
 	current := queue[0]
 	queue = queue[1:] 
-	fmt.Print(current.val, " ")
+	fmt.Print(current.Val, " ")
 
-	if current.left != nil {
-		queue = append(queue, current.left)
+	if current.Left != nil {
+		queue = append(queue, current.Left)
 	}
-	if current.right != nil {
-		queue = append(queue, current.right)
+	if current.Right != nil {
+		queue = append(queue, current.Right)
 	}
 	
 }
@@ -119,10 +141,10 @@ func Search(root *TreeNode,k int)bool{
 	if root==nil{
        return false
 	}
-	if root.val==k{
+	if root.Val==k{
 		return true
 	}
-	return Search(root.left,k)||Search(root.right,k)
+	return Search(root.Left,k)||Search(root.Right,k)
 
 }
 
@@ -130,7 +152,7 @@ func Search(root *TreeNode,k int)bool{
 
 func Insert(root *TreeNode,v int)*TreeNode{
   
-	newNode:=&TreeNode{val: v}
+	newNode:=&TreeNode{Val: v}
 	
 	if root==nil{
 		return newNode
@@ -141,18 +163,18 @@ func Insert(root *TreeNode,v int)*TreeNode{
 	   curr:=queue[0]
 	   queue=queue[1:]
 
-	   if curr.left==nil{
-		curr.left=newNode
+	   if curr.Left==nil{
+		curr.Left=newNode
 		return root
 	   }else{
-		queue=append(queue,curr.left)
+		queue=append(queue,curr.Left)
 	   }
 
-	   if curr.right==nil{
-		curr.right=newNode
+	   if curr.Right==nil{
+		curr.Right=newNode
 		return root
 	   }else{
-		queue=append(queue,curr.right)
+		queue=append(queue,curr.Right)
 	   }
 
 	}
@@ -173,14 +195,14 @@ func Searchh(root *TreeNode,v int)bool{
 	curr:=queue[0]
 	queue=queue[1:]
 
-	if curr.val==v{
+	if curr.Val==v{
 		return true
 	}
-    if curr.left!=nil{
-		queue=append(queue,curr.left)
+    if curr.Left!=nil{
+		queue=append(queue,curr.Left)
 	}
-    if curr.right!=nil{
-		queue=append(queue,curr.right)
+    if curr.Right!=nil{
+		queue=append(queue,curr.Right)
 	}
 
    }
@@ -200,15 +222,15 @@ func Update(root *TreeNode,oldVal,newVal int)bool{
 	curr:=queue[0]
 	queue=queue[1:]
 
-	if curr.val==oldVal{
-		curr.val=newVal
+	if curr.Val==oldVal{
+		curr.Val=newVal
 		return true
 	}
-    if curr.left!=nil{
-		queue=append(queue,curr.left)
+    if curr.Left!=nil{
+		queue=append(queue,curr.Left)
 	}
-    if curr.right!=nil{
-		queue=append(queue,curr.right)
+    if curr.Right!=nil{
+		queue=append(queue,curr.Right)
 	}
 
    }
@@ -216,7 +238,7 @@ func Update(root *TreeNode,oldVal,newVal int)bool{
 
 }
 
-func Delete(root *TreeNode,value int)*TreeNode{
+func Delete(root *TreeNode,Value int)*TreeNode{
  
     if root==nil{
 		return nil
@@ -232,16 +254,16 @@ func Delete(root *TreeNode,value int)*TreeNode{
 		curr:=queue[0]
 		queue=queue[1:]
        
-		if curr.val==value{
+		if curr.Val==Value{
 			target=curr
 		}
-		if curr.left!=nil{
-			m[curr.left]=curr
-			queue = append(queue, curr.left)
+		if curr.Left!=nil{
+			m[curr.Left]=curr
+			queue = append(queue, curr.Left)
 		}
-		if curr.right!=nil{
-			m[curr.right]=curr
-			queue = append(queue, curr.right)
+		if curr.Right!=nil{
+			m[curr.Right]=curr
+			queue = append(queue, curr.Right)
 		}
 		last=curr
 	}
@@ -249,14 +271,14 @@ func Delete(root *TreeNode,value int)*TreeNode{
 		return root
 	}
 
-	target.val=last.val
+	target.Val=last.Val
 	parentOfLast=m[last]
 
 	if parentOfLast !=nil{
-		if parentOfLast.left==last{
-			parentOfLast.left=nil
-		}else if parentOfLast.right == last{
-			parentOfLast.right=nil
+		if parentOfLast.Left==last{
+			parentOfLast.Left=nil
+		}else if parentOfLast.Right == last{
+			parentOfLast.Right=nil
 		}
 	}else{
 		root=nil
@@ -269,23 +291,23 @@ func Height(root *TreeNode)int{
 	if root==nil{
 		return 0
 	}
-	left:=Height(root.left)
-	right:=Height(root.right)
+	Left:=Height(root.Left)
+	Right:=Height(root.Right)
 	
-	if left<right{
-		return right+1
+	if Left<Right{
+		return Right+1
 	}
-	return left+1
+	return Left+1
 }
 
 func CountLeaf(root *TreeNode)int{
 	if root==nil{
 		return 0
 	}
-	if root.left==nil && root.right==nil{
+	if root.Left==nil && root.Right==nil{
 		return 1
 	}
-	return CountLeaf(root.left)+CountLeaf(root.right)
+	return CountLeaf(root.Left)+CountLeaf(root.Right)
 }
 
 func CountNode(root *TreeNode)int{
@@ -293,15 +315,15 @@ func CountNode(root *TreeNode)int{
 		return 0
 	}
 	
-	return 1+ CountNode(root.left)+CountNode(root.right)
+	return 1+ CountNode(root.Left)+CountNode(root.Right)
 }
 
-func CountInterval(root *TreeNode)int{
+func CountInterVal(root *TreeNode)int{
 
-	if root==nil || (root.left==nil || root.right==nil ){
+	if root==nil || (root.Left==nil || root.Right==nil ){
 		return 0
 	}
-	return 1+CountInterval(root.left)+CountInterval(root.right)
+	return 1+CountInterVal(root.Left)+CountInterVal(root.Right)
 
 }
 
@@ -314,16 +336,16 @@ func Diameter(root *TreeNode)int{
        return 0
 	}
 
-	left:=Diameter(root.left)
-	right:=Diameter(root.right)
+	Left:=Diameter(root.Left)
+	Right:=Diameter(root.Right)
 
-	if left+right>maxDiameter{
-		maxDiameter=left+right
+	if Left+Right>maxDiameter{
+		maxDiameter=Left+Right
 	}
-	if left>right{
-		return left+1
+	if Left>Right{
+		return Left+1
 	}
-	return right+1
+	return Right+1
 }
 
 

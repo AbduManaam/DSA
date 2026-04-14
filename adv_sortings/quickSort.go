@@ -1,7 +1,6 @@
 package advsortings
 
 
-
 func QuickSort(arr []int, low, high int) {
 	if low < high {
 		pivotIndex := partition(arr, low, high)
@@ -12,7 +11,7 @@ func QuickSort(arr []int, low, high int) {
 }
 
 func partition(arr []int, low, high int) int {
-	pivot := arr[high] 
+	pivot := arr[high]
 	i := low - 1
 
 	for j := low; j < high; j++ {
@@ -27,6 +26,13 @@ func partition(arr []int, low, high int) int {
 
 	return i + 1
 }
+
+
+
+
+
+
+
 
 
 
