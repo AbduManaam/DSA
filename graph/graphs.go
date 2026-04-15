@@ -295,6 +295,11 @@ func WeightedG(){
 	addEdges(1,3,20)
 	addEdges(2,3,50)
 	addEdges(2,4,40)
+	
+	
+	
+	
+	
 
 	fmt.Println("Weighted Graph:= ",graph)
 }

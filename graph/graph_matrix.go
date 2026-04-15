@@ -166,19 +166,19 @@ func (g *Graph) Print() {
 
 
 
-func main() {
-	g := NewGraph(3)
+// func main() {
+// 	g := NewGraph(3)
 
-	// Add edges
-	g.AddUndirectedEdge(0, 1)
-	g.AddEdge(1, 2)
+// 	// Add edges
+// 	g.AddUndirectedEdge(0, 1)
+// 	g.AddEdge(1, 2)
 
-	// Print matrix
-	g.Print()
+// 	// Print matrix
+// 	g.Print()
 
-	// Check edge
-	fmt.Println("Edge 1->2 exists?", g.HasEdge(1, 2))
-}
+// 	// Check edge
+// 	fmt.Println("Edge 1->2 exists?", g.HasEdge(1, 2))
+// }
 
 
 
